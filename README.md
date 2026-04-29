@@ -1,6 +1,7 @@
 # `gh namespace-clone`
 
 [![CI](https://github.com/spenserblack/gh-namespace-clone/actions/workflows/ci.yml/badge.svg)](https://github.com/spenserblack/gh-namespace-clone/actions/workflows/ci.yml)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/spenserblack/gh-namespace-clone/total)
 
 ## Installation
 
