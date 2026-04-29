@@ -2,11 +2,17 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/cli/go-gh/v2/pkg/api"
+	"github.com/spenserblack/gh-namespace-clone/cmd"
 )
 
 func main() {
+	if err := cmd.Execute(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
 	fmt.Println("hi world, this is the gh-namespace-clone extension!")
 	client, err := api.DefaultRESTClient()
 	if err != nil {
