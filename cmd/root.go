@@ -2,7 +2,10 @@ package cmd
 
 import (
 	"fmt"
+	"os/exec"
 
+	"github.com/cli/safeexec"
+	"github.com/spenserblack/gh-namespace-clone/internal/namespace"
 	"github.com/spenserblack/gh-namespace-clone/internal/repository"
 	"github.com/spf13/cobra"
 )
@@ -30,8 +33,25 @@ var rootCmd = &cobra.Command{
 			fmt.Fprintln(stderr, err)
 			return
 		}
+		namespace := namespace.Namespace{
+			Prefix:     prefix,
+			Repository: repo,
+			UseDomain:  domain,
+		}
 
-		fmt.Fprintf(stdout, "prefix=%s domain=%t repo=%v\n", prefix, domain, repo)
+		gh, err := safeexec.LookPath("gh")
+		if err != nil {
+			fmt.Fprintln(stderr, err)
+			return
+		}
+		command := exec.Command(gh, "repo", "clone", repoString, namespace.Path())
+		command.Stdout = stdout
+		command.Stderr = stderr
+
+		err = command.Run()
+		if err != nil {
+			fmt.Fprintln(stderr, err)
+		}
 	},
 }
 
