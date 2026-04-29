@@ -1,5 +1,11 @@
 # `gh namespace-clone`
 
+## Installation
+
+```shell
+gh extension install spenserblack/gh-namespace-clone
+```
+
 ## Description
 
 This [`gh`][github-cli] extension wraps `gh repo clone`, namespacing your cloned
