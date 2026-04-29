@@ -1,5 +1,7 @@
 # `gh namespace-clone`
 
+[![CI](https://github.com/spenserblack/gh-namespace-clone/actions/workflows/ci.yml/badge.svg)](https://github.com/spenserblack/gh-namespace-clone/actions/workflows/ci.yml)
+
 ## Installation
 
 ```shell
