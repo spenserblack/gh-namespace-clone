@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/spenserblack/gh-namespace-clone/internal/repository"
 	"github.com/spf13/cobra"
 )
 
@@ -23,10 +24,14 @@ var rootCmd = &cobra.Command{
 		stderr := cmd.ErrOrStderr()
 		stdout := cmd.OutOrStdout()
 
-		repo := args[0]
+		repoString := args[0]
+		repo, err := repository.Parse(repoString)
+		if err != nil {
+			fmt.Fprintln(stderr, err)
+			return
+		}
 
-		fmt.Fprintf(stdout, "prefix=%s domain=%t repo=%s\n", prefix, domain, repo)
-		fmt.Fprintf(stderr, "TODO\n")
+		fmt.Fprintf(stdout, "prefix=%s domain=%t repo=%v\n", prefix, domain, repo)
 	},
 }
 
